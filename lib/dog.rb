@@ -77,12 +77,12 @@ class Dog
   end
 
   def self.find_or_create_by(name:, breed:)
-    tdog = DB[:conn].execute("Select * from #{self.table_name} WHERE name = ? and breed = ?", name, breed)
-    if !tdog.empty?
-      tdog_r = tdog.first
-      tdog = self.new(id:tdog_r[0], name:tdog_r[1], breed:tdog_r[2])
+    fdog = DB[:conn].execute("Select * from #{self.table_name} WHERE name = ? and breed = ?", name, breed)
+    if !fdog.empty?
+      find_dog = fdog.first
+      fdog = self.new(id:find_dog[0], name:find_dog[1], breed:find_dog[2])
     else
-      tdog = self.create(name: name, breed: breed)
+      fdog = self.create(name: name, breed: breed)
     end
     tdog
   end
