@@ -89,7 +89,7 @@ class Dog
 
   def update
     sql = <<-SQL
-      update #{self.class.table_name} set name = ?, breed = ? where id = ?
+      update dogs set name = ?, breed = ? where id = ?
     SQL
 
     DB[:conn].execute(sql, self.name, self.breed, self.id)
