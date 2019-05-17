@@ -84,7 +84,7 @@ class Dog
     else
       fdog = self.create(name: name, breed: breed)
     end
-    tdog
+    fdog
   end
 
   def update
