@@ -10,11 +10,11 @@ class Dog
 
   def self.create_table
     sql = <<-SQL
-            create table if not exists dogs (
-                id Integer primary key,
-                name text,
-                breed text
-            )
+      create table if not exists dogs (
+          id Integer primary key,
+          name text,
+          breed text
+      )
     SQL
 
     DB[:conn].execute(sql)
