@@ -7,13 +7,10 @@ class Dog
     self.breed = breed
   end
 
-  def self.table_name
-    "#{self.to_s.downcase}s"
-  end
 
   def self.create_table
     sql = <<-SQL
-            create table if not exists #{self.table_name} (
+            create table if not exists dogs (
                 id Integer primary key,
                 name text,
                 breed text
@@ -25,7 +22,7 @@ class Dog
 
   def self.drop_table
     sql = <<-SQL
-                drop table if exists #{self.table_name}
+      drop table if exists dogs
     SQL
 
     DB[:conn].execute(sql)
