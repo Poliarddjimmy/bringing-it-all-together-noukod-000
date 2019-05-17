@@ -36,7 +36,7 @@ class Dog
       self.update
     else
       sql = <<-SQL
-        INSERT INTO #{self.class.table_name} (name, breed)
+        INSERT INTO dogs (name, breed)
         VALUES (?, ?)
       SQL
 
