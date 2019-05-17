@@ -68,7 +68,7 @@ class Dog
 
   def self.find_by_name(name)
     sql = <<-SQL
-        select * from #{self.table_name} where name = ?
+        select * from dogs where name = ?
     SQL
 
     DB[:conn].execute(sql, name).map do |d|
