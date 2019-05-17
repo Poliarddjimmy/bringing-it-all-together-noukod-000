@@ -46,9 +46,8 @@ class Dog
     self
   end
 
-  def self.create(dog_ash)
-    #tdog = DB[:conn].execute("Select * from dogs WHERE name = ? and breed = ?")
-    tdog = self.new(dog_ash)
+  def self.create(name:, breed:)
+    tdog = self.new(name:name, breed: breed)
     tdog.save
   end
 
