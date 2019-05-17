@@ -1,29 +1,36 @@
-class Dog 
-  attr_accessor :id, :name, :breed 
-  def initialize(id: nil, name:, breed:)
-    @id = id
-    @name = name
-    @breed = breed
+    
+class Dog
+  attr_accessor :id, :name, :breed
+  def initialize(id:nil, name:, breed:)
+    self.id = id
+    self.name = name
+    self.breed = breed
   end
-  
+
+  def self.table_name
+    "#{self.to_s.downcase}s"
+  end
+
   def self.create_table
-    sql =  <<-SQL
-      CREATE TABLE IF NOT EXISTS dogs (
-        id INTEGER PRIMARY KEY,
-        name TEXT,
-        breed TEXT
-        )
-        SQL
+    sql = <<-SQL
+            create table if not exists #{self.table_name} (
+                id Integer primary key,
+                name text,
+                breed text
+            )
+    SQL
+
     DB[:conn].execute(sql)
   end
-  
+
   def self.drop_table
-    sql =  <<-SQL
-      DROP TABLE IF EXISTS dogs
-        SQL
+    sql = <<-SQL
+                drop table if exists #{self.table_name}
+    SQL
+
     DB[:conn].execute(sql)
   end
-  
+
   def save
     if self.id
       self.update
@@ -38,7 +45,7 @@ class Dog
     end
     self
   end
-  
+
   def self.create(dog_ash)
     #tdog = DB[:conn].execute("Select * from #{self.table_name} WHERE name = ? and breed = ?")
     tdog = self.new(dog_ash)
@@ -87,8 +94,4 @@ class Dog
 
     DB[:conn].execute(sql, self.name, self.breed, self.id)
   end
-  
-  
-  
-  
 end
